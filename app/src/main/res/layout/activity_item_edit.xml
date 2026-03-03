@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ItemEdit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F4F7">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#2962FF"
+        app:title="Branch: Head Office"
+        app:titleTextColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Scroll Area -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Item Info Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:text="Item Info"
+                        android:layout_width = "wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="#212121"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/etBarcode"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:hint="Barcode"
+                            android:background="@drawable/edittext_bg_modern"/>
+
+                        <Button
+                            android:id="@+id/btnEnter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="ENTER"
+                            android:backgroundTint="#2962FF"/>
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/etDescription"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="12dp"
+                        android:hint="Item Description"
+                        android:background="@drawable/edittext_bg_modern"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Price / Cost / Stock -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <!-- Price Label -->
+                    <TextView
+                        android:id="@+id/tvPriceLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Price (Inc. GST)"
+                        android:textColor="#757575"
+                        android:textSize="14sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <!-- Price Input -->
+                    <EditText
+                        android:id="@+id/etPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/edittext_bg_modern"
+                        android:inputType="numberDecimal"
+                        android:paddingHorizontal="8dp"
+                        app:layout_constraintTop_toBottomOf="@id/tvPriceLabel"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/etCost"
+                        app:layout_constraintWidth_percent="0.48"/>
+
+                    <!-- Cost Label -->
+                    <TextView
+                        android:id="@+id/tvCostLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cost (Exc. GST)"
+                        android:textColor="#757575"
+                        android:textSize="14sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/etCost"/>
+
+                    <!-- Cost Input -->
+                    <EditText
+                        android:id="@+id/etCost"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/edittext_bg_modern"
+                        android:inputType="numberDecimal"
+                        android:paddingHorizontal="8dp"
+                        app:layout_constraintTop_toBottomOf="@id/tvCostLabel"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/etPrice"
+                        app:layout_constraintWidth_percent="0.48"/>
+
+                    <!-- Stock Label -->
+                    <TextView
+                        android:id="@+id/tvStockLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current Stock"
+                        android:textColor="#757575"
+                        android:textSize="18sp"
+                        android:layout_marginTop="12dp"
+                        app:layout_constraintTop_toBottomOf="@id/etPrice"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <!-- Stock Input -->
+                    <EditText
+                        android:id="@+id/etStock"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/edittext_bg_modern"
+                        android:inputType="number"
+                        android:paddingHorizontal="8dp"
+                        app:layout_constraintTop_toBottomOf="@id/tvStockLabel"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Image -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="12dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:src="@drawable/ic_image_placeholder"
+                    android:scaleType="centerInside"/>
+            </androidx.cardview.widget.CardView>
+
+            <!-- DELETE -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="DELETE"
+                android:enabled="false"
+                android:backgroundTint="@drawable/delete_button_selector"
+                app:cornerRadius="8dp"/>
+
+            <!-- UPDATE -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="32dp"
+                android:text="UPDATE"
+                android:enabled="false"
+                android:backgroundTint="@drawable/update_button_selector"
+                app:cornerRadius="8dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

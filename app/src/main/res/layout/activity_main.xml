@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F4F7">
+
+    <TextView
+        android:text="Function"
+        android:textSize="30sp"
+        android:textColor="#212121"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        />
+
+    <!-- 外层圆角容器 -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/menuContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="#E0E0E0"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+
+        <!-- 内部布局 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/menuContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <Button
+                android:id="@+id/btn_itemEdit"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/primary_blue"
+                android:text="Item Edit"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+
+                android:layout_marginTop="12dp"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="5:1" />
+
+            <Button
+                android:id="@+id/btn_stockTake"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/primary_blue"
+                android:text="Stock Take"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+
+                android:layout_marginTop="1dp"
+
+                app:layout_constraintTop_toBottomOf="@id/btn_itemEdit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="5:1" />
+
+            <Button
+                android:id="@+id/btn_priceCheck"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/primary_blue"
+                android:text="Price Check"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="12dp"
+
+                app:layout_constraintTop_toBottomOf="@id/btn_stockTake"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="5:1" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <Button
+        android:id="@+id/btn_signOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Out"
+        android:textSize="22sp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.7"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
