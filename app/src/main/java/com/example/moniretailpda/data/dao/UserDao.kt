@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.OnConflictStrategy
+import com.example.moniretailpda.data.entity.StaffEntity
 import com.example.moniretailpda.data.entity.UserEntity
 
 @Dao
@@ -14,6 +15,6 @@ interface UserDao {
     suspend fun addUser(user:UserEntity)
 
 
-    @Query("SELECT * FROM user_table WHERE email = :email LIMIT 1")
+    @Query("SELECT * FROM user_table WHERE email = :email AND password = :password LIMIT 1")
     suspend fun login(email:String, password:String): UserEntity?
 }

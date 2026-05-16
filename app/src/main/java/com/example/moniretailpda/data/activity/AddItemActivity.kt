@@ -1,6 +1,5 @@
-package com.example.moniretailpda
+package com.example.moniretailpda.data.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -9,7 +8,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.moniretailpda.R
 import com.example.moniretailpda.data.model.ProductViewModel
+import com.example.moniretailpda.data.session.SessionManager
 
 class  AddItemActivity : AppCompatActivity() {
 
@@ -21,6 +22,7 @@ class  AddItemActivity : AppCompatActivity() {
     private lateinit var etStock: EditText
     private lateinit var viewModel: ProductViewModel
     private var newBarcode : String = ""
+    private lateinit var sessionManager: SessionManager
 
     private companion object {
         const val unexistingBarcode = "unexistingbarcode"
@@ -49,6 +51,7 @@ class  AddItemActivity : AppCompatActivity() {
         etPrice = findViewById<EditText>(R.id.etPrice)
         etCost = findViewById<EditText>(R.id.etCost)
         etStock = findViewById<EditText>(R.id.etStock)
+        sessionManager = SessionManager(this)
 
         etBarcode.setText(newBarcode)
 
@@ -68,7 +71,7 @@ class  AddItemActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            viewModel.addProduct(barcode,itemName,price,cost,stock)
+            viewModel.addProduct(barcode,itemName,price,cost,stock,sessionManager.getUserId().toString())
         }
     }
 

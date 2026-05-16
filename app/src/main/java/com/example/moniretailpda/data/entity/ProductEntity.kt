@@ -13,7 +13,7 @@ data class ProductEntity(
     val price: String = "",
     val cost: String = "",
     val currentStock: String = "",
-
+    val belongUser: String =""
 ) {
 
 }

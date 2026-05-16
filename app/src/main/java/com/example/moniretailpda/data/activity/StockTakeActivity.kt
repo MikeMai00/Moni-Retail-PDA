@@ -1,20 +1,18 @@
-package com.example.moniretailpda
+package com.example.moniretailpda.data.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.moniretailpda.R
 import com.example.moniretailpda.data.model.ProductViewModel
+import com.example.moniretailpda.data.session.SessionManager
 
 class StockTakeActivity : AppCompatActivity() {
 
@@ -27,7 +25,7 @@ class StockTakeActivity : AppCompatActivity() {
     private lateinit var tvCurrentStock: EditText
     private lateinit var tvCount : TextView
     private var newStock = 0
-
+    private lateinit var sessionManager: SessionManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +48,7 @@ class StockTakeActivity : AppCompatActivity() {
         val etBarcode = findViewById<EditText>(R.id.etBarcode)
         val btnConfirm = findViewById<Button>(R.id.btnConfirm)
         val btnUpdate = findViewById<Button>(R.id.btnUpdate)
-
+        sessionManager = SessionManager(this)
 
 
 
@@ -60,7 +58,7 @@ class StockTakeActivity : AppCompatActivity() {
                 Toast.makeText(this, "Barcode is required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            viewModel.getProductById(barcode)
+            viewModel.getProductById(barcode, sessionManager.getUserId().toString())
 
         }
 

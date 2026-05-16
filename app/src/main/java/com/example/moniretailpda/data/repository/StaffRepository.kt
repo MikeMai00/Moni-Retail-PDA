@@ -14,11 +14,15 @@ class StaffRepository(private val staffDao: StaffDao) {
         return staffDao.getStaffByPassword(password)
     }
 
-    suspend fun getAllStaff() : Flow<List<StaffEntity>> {
-        return staffDao.getAllStaff()
+    suspend fun getStaff(belongUser:String) : Flow<List<StaffEntity>> {
+        return staffDao.getStaff(belongUser)
     }
 
     suspend fun deleteStaff(name: List<String>){
         staffDao.deleteStaff(name)
+    }
+
+    suspend fun staffLogin(name:String,password:String) : StaffEntity?{
+        return staffDao.staffLogin(name,password)
     }
 }

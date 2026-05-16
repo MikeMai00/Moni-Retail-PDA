@@ -1,8 +1,7 @@
-package com.example.moniretailpda
+package com.example.moniretailpda.data.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,8 +10,10 @@ import android.widget.EditText
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.moniretailpda.R
 import com.example.moniretailpda.data.entity.ProductEntity
 import com.example.moniretailpda.data.model.ProductViewModel
+import com.example.moniretailpda.data.session.SessionManager
 
 class ItemEditActivity : AppCompatActivity() {
 
@@ -25,6 +26,7 @@ class ItemEditActivity : AppCompatActivity() {
     private lateinit var etCost: EditText
     private lateinit var etStock: EditText
     private lateinit var viewModel: ProductViewModel
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +53,7 @@ class ItemEditActivity : AppCompatActivity() {
         etPrice = findViewById(R.id.etPrice)
         etCost = findViewById(R.id.etCost)
         etStock = findViewById(R.id.etStock)
+        sessionManager = SessionManager(this)
 
         btnEnter.setOnClickListener {
             val itemName = etDescription.text.toString().trim()
@@ -59,7 +62,7 @@ class ItemEditActivity : AppCompatActivity() {
                 Toast.makeText(this, "Barcode is required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            viewModel.getProductById(barcode)
+            viewModel.getProductById(barcode, sessionManager.getUserId().toString())
 
         }
 

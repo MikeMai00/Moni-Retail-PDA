@@ -9,8 +9,8 @@ class ProductRepository(private val productDao: ProductDao) {
         productDao.addProduct(product)
     }
 
-    suspend fun getProductById(barcode: String): ProductEntity?{
-        return productDao.getProductById(barcode)
+    suspend fun getProductById(barcode: String, belongUser:String): ProductEntity?{
+        return productDao.getProductById(barcode,belongUser)
     }
 
     suspend fun updateProduct(barcode:String,itemName: String, price: String, cost: String,stock:String){

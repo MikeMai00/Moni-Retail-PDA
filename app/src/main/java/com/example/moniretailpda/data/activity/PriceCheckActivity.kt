@@ -1,4 +1,4 @@
-package com.example.moniretailpda
+package com.example.moniretailpda.data.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.moniretailpda.R
 import com.example.moniretailpda.data.model.ProductViewModel
+import com.example.moniretailpda.data.session.SessionManager
 
 class PriceCheckActivity : AppCompatActivity() {
 
@@ -20,7 +22,7 @@ class PriceCheckActivity : AppCompatActivity() {
     private lateinit var tvProductName: TextView
     private lateinit var tvNormalPrice: TextView
     private lateinit var viewModel: ProductViewModel
-
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +43,7 @@ class PriceCheckActivity : AppCompatActivity() {
         etBarcode = findViewById<EditText>(R.id.etBarcode)
         tvProductName = findViewById<TextView>(R.id.tvProductName)
         tvNormalPrice = findViewById<TextView>(R.id.tvNormalPrice)
+        sessionManager = SessionManager(this)
 
         btnSearch.setOnClickListener {
             val barcode = etBarcode.text.toString().trim()
@@ -48,7 +51,7 @@ class PriceCheckActivity : AppCompatActivity() {
                 Toast.makeText(this, "Barcode is required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            viewModel.getProductById(barcode)
+            viewModel.getProductById(barcode, sessionManager.getUserId().toString())
         }
 
     }

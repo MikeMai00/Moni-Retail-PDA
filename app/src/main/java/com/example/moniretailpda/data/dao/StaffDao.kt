@@ -17,9 +17,12 @@ interface StaffDao {
     @Query("SELECT * FROM staff_table WHERE password = :password")
     suspend fun getStaffByPassword(password: String): StaffEntity?
 
-    @Query("SELECT * FROM staff_table")
-    fun getAllStaff(): Flow<List<StaffEntity>>
+    @Query("SELECT * FROM staff_table where belongUser = :belongUser")
+    fun getStaff(belongUser:String): Flow<List<StaffEntity>>
 
     @Query("DELETE FROM staff_table WHERE name IN (:name)")
     suspend fun deleteStaff(name:List<String>)
+
+    @Query("SELECT * FROM staff_table WHERE name = :name AND password = :password LIMIT 1")
+    suspend fun staffLogin(name:String, password:String): StaffEntity?
 }

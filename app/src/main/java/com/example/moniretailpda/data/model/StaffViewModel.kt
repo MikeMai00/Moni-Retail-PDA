@@ -2,19 +2,22 @@ package com.example.moniretailpda.data.model
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.moniretailpda.data.database.PDA_Database
 import com.example.moniretailpda.data.entity.StaffEntity
+
 import com.example.moniretailpda.data.repository.StaffRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class StaffViewModel(application: Application): AndroidViewModel(application) {
     private val repository: StaffRepository
+
+
+    private val _staffentity = MutableLiveData<StaffEntity?>()
+    val staffentity: MutableLiveData<StaffEntity?> = _staffentity
 
     private val _stafflist = MutableLiveData<List<StaffEntity>>()
     val stafflist: MutableLiveData<List<StaffEntity>> = _stafflist
@@ -33,17 +36,17 @@ class StaffViewModel(application: Application): AndroidViewModel(application) {
 
     }
 
-    fun getAllStaff(){
+    fun getStaff(belongUser: String){
         viewModelScope.launch(Dispatchers.IO){
-            val staffList = repository.getAllStaff().first()
+            val staffList = repository.getStaff(belongUser).first()
             _stafflist.postValue(staffList)
         }
     }
 
-    fun addStaff(staffName:String, password:String){
+    fun addStaff(staffName:String, password:String,belongUser:String){
         viewModelScope.launch(Dispatchers.IO){
             try{
-                val staff = StaffEntity(name = staffName, password = password)
+                val staff = StaffEntity(name = staffName, password = password, belongUser = belongUser)
 
                 repository.addStaff(staff)
                 _staffboolean.postValue(true)
@@ -55,16 +58,28 @@ class StaffViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun deleteStaff(name:List<String>){
+    fun deleteStaff(name: List<String>, belongUser: String){
         viewModelScope.launch(Dispatchers.IO){
             try {
                 repository.deleteStaff(name)
                 _staffdelete.postValue(true)
-                getAllStaff()
+                getStaff(belongUser)
             }
             catch (e:Exception){
                 _staffdelete.postValue(false)
             }
         }
+    }
+
+    fun staffLogin(name: String,password:String){
+        viewModelScope.launch(Dispatchers.IO){
+
+            val staffEntity = repository.staffLogin(name,password)
+            staffentity.postValue(staffEntity)
+        }
+    }
+
+    fun resetLoginStatus(){
+        staffentity.value = null
     }
 }

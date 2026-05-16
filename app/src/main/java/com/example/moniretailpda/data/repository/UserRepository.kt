@@ -8,8 +8,8 @@ class UserRepository(private val userDao: UserDao) {
     suspend fun addUser(user: UserEntity){
         userDao.addUser(user)
     }
-    suspend fun login(email:String,password:String){
-        userDao.login(email,password)
+    suspend fun login(email:String,password:String) : UserEntity?{
+        return userDao.login(email,password)
     }
 
 }

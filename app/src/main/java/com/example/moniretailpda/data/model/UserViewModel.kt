@@ -15,6 +15,9 @@ class UserViewModel(application:Application): AndroidViewModel(application) {
 
     private val repository: UserRepository
 
+    private val _userentity = MutableLiveData<UserEntity?>()
+    val userentity: MutableLiveData<UserEntity?> = _userentity
+
     private val _userboolean = MutableLiveData<Boolean>()
     val userboolean: MutableLiveData<Boolean> = _userboolean
 
@@ -24,22 +27,26 @@ class UserViewModel(application:Application): AndroidViewModel(application) {
 
     }
 
-    fun addUser(user:UserEntity){
-        viewModelScope.launch(Dispatchers.IO){
-            repository.addUser(user)
-        }
-    }
-
-    fun login(email: String, password: String){
+    fun addUser(email:String, password:String){
         viewModelScope.launch(Dispatchers.IO){
             try{
-                repository.login(email,password)
+                val user = UserEntity(email = email, password = password)
+
+                repository.addUser(user)
                 _userboolean.postValue(true)
             }
             catch (e:Exception){
                 _userboolean.postValue(false)
 
             }
+        }
+    }
+
+    fun login(email: String,password:String){
+        viewModelScope.launch(Dispatchers.IO){
+
+            val userEntity = repository.login(email,password)
+            userentity.postValue(userEntity)
         }
     }
 }

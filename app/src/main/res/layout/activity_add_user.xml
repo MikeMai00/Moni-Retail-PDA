@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F2F4F7"
-    android:id="@+id/addstaff">
+    android:id="@+id/adduser">
 
     <!-- Title -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Staff"
+        android:text="Add User"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#212121"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/etStaffName"
+        app:layout_constraintBottom_toTopOf="@+id/etEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
@@ -26,10 +26,10 @@
 
     <!-- Staff Name -->
     <EditText
-        android:id="@+id/etStaffName"
+        android:id="@+id/etEmail"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:hint="Staff Name"
+        android:hint="Email"
         android:paddingHorizontal="16dp"
         android:background="@drawable/bg_edittext_round"
         android:inputType="textPersonName"
@@ -45,13 +45,12 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:hint="Password"
-        android:focusable="false"
         android:paddingHorizontal="16dp"
         android:background="@drawable/bg_edittext_round"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/etStaffName"
-        app:layout_constraintStart_toStartOf="@id/etStaffName"
-        app:layout_constraintEnd_toEndOf="@id/etStaffName"
+        app:layout_constraintTop_toBottomOf="@id/etEmail"
+        app:layout_constraintStart_toStartOf="@id/etEmail"
+        app:layout_constraintEnd_toEndOf="@id/etEmail"
         android:layout_marginTop="16dp"/>
 
     <!-- Save Button -->

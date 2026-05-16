@@ -51,7 +51,7 @@ class ProductViewModel(application:Application): AndroidViewModel(application) {
 
     }
 
-    fun addProduct(barcode:String,itemName:String,price:String,cost:String,stock:String){
+    fun addProduct(barcode:String,itemName:String,price:String,cost:String,stock:String,belongUser:String){
         viewModelScope.launch(Dispatchers.IO){
             try{
                 val product = ProductEntity(
@@ -59,7 +59,8 @@ class ProductViewModel(application:Application): AndroidViewModel(application) {
                     itemName = itemName,
                     price = price,
                     cost = cost,
-                    currentStock = stock
+                    currentStock = stock,
+                    belongUser = belongUser
                 )
 
                 repository.addProduct(product)
@@ -72,10 +73,10 @@ class ProductViewModel(application:Application): AndroidViewModel(application) {
         }
     }
 
-    fun getProductById(barcode: String) {
+    fun getProductById(barcode: String,belongUser: String) {
         viewModelScope.launch {
             _hasSearched.value = true
-            _product.value = repository.getProductById(barcode)
+            _product.value = repository.getProductById(barcode, belongUser)
         }
 
     }

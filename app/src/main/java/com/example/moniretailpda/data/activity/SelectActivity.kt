@@ -1,10 +1,11 @@
-package com.example.moniretailpda
+package com.example.moniretailpda.data.activity
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.moniretailpda.R
 
 class SelectActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

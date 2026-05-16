@@ -76,6 +76,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:inputType="number"
                         android:background="@android:color/transparent"
                         android:hint="Scan or enter barcode"
                         android:padding="10dp"
