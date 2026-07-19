@@ -4,8 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 
 
-class SessionManager(context: Context) {
-    private val sharedPreferences: SharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
+
+class SessionManager(private val context: Context) {
+    private val sharedPreferences: SharedPreferences =  context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
 
     companion object{
         private const val KEY_USER_ID = "user_id"
@@ -19,6 +20,7 @@ class SessionManager(context: Context) {
             apply()
         }
     }
+
 
     fun getUserId(): Int{
         return sharedPreferences.getInt(KEY_USER_ID, -1)

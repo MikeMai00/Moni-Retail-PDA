@@ -1,6 +1,5 @@
 package com.example.moniretailpda.data.repository
 
-import androidx.lifecycle.LiveData
 import com.example.moniretailpda.data.dao.StaffDao
 import com.example.moniretailpda.data.entity.StaffEntity
 import kotlinx.coroutines.flow.Flow

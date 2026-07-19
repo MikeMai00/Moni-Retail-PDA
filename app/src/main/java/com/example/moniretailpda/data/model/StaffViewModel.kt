@@ -79,7 +79,4 @@ class StaffViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun resetLoginStatus(){
-        staffentity.value = null
-    }
 }

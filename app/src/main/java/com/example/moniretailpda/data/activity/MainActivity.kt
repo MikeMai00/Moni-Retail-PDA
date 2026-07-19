@@ -1,8 +1,10 @@
 package com.example.moniretailpda.data.activity
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.OnBackPressedCallback
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         val btn_stockTake = findViewById<Button>(R.id.btn_stockTake)
         val btn_priceCheck = findViewById<Button>(R.id.btn_priceCheck)
         val btn_signOut = findViewById<Button>(R.id.btn_signOut)
+        val btn_settings = findViewById<ImageButton>(R.id.btnSettings)
         sessionManager = SessionManager(this)
 
         btn_itemEdit.setOnClickListener {
@@ -51,6 +54,10 @@ class MainActivity : AppCompatActivity() {
         btn_priceCheck.setOnClickListener{
             startActivity(Intent(this, PriceCheckActivity::class.java))
 
+        }
+
+        btn_settings.setOnClickListener{
+            startActivity(Intent(this, PrinterActivity::class.java))
         }
 
         btn_signOut.setOnClickListener{

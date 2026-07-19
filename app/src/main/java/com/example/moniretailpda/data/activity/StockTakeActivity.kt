@@ -1,7 +1,9 @@
 package com.example.moniretailpda.data.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -59,6 +61,12 @@ class StockTakeActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             viewModel.getProductById(barcode, sessionManager.getUserId().toString())
+            //收键盘
+            val currentView = this.currentFocus
+            if (currentView != null) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(currentView.windowToken, 0)
+            }
 
         }
 

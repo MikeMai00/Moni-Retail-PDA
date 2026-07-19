@@ -4,20 +4,23 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.moniretailpda.data.dao.PrinterDao
 import com.example.moniretailpda.data.dao.UserDao
 import com.example.moniretailpda.data.dao.ProductDao
 import com.example.moniretailpda.data.dao.StaffDao
 import com.example.moniretailpda.data.entity.ProductEntity
 import com.example.moniretailpda.data.entity.UserEntity
 import com.example.moniretailpda.data.entity.StaffEntity
+import com.example.moniretailpda.data.entity.PrinterEntity
 
 
-@Database(entities = [UserEntity::class, ProductEntity::class,StaffEntity::class], version = 3, exportSchema = true)
+@Database(entities = [UserEntity::class, ProductEntity::class,StaffEntity::class,PrinterEntity::class], version = 3, exportSchema = true)
 abstract class PDA_Database : RoomDatabase(){
 
     abstract fun userDao(): UserDao
     abstract fun productDao(): ProductDao
     abstract fun staffDao(): StaffDao
+    abstract fun printerDao(): PrinterDao
 
     companion object{
         @Volatile

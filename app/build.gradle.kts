@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(files("libs/printer-lib-3.5.5.aar"))
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("com.google.android.material:material:1.11.0")

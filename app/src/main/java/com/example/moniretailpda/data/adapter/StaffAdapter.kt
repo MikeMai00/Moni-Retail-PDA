@@ -1,7 +1,6 @@
 package com.example.moniretailpda.data.adapter
 
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,6 @@ class StaffAdapter(
     var isEdit:Boolean = false,
     private val onStaffClicked: (StaffEntity) -> Unit
 ) : RecyclerView.Adapter<StaffAdapter.StaffViewHolder>() {
-    val TAG = "StaffAdapter"
     val checkList = mutableListOf<String>()
 
     inner class StaffViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

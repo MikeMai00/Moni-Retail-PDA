@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.moniretailpda.data.database.PDA_Database
-import com.example.moniretailpda.data.entity.StaffEntity
 import com.example.moniretailpda.data.entity.UserEntity
 import com.example.moniretailpda.data.repository.UserRepository
 import kotlinx.coroutines.Dispatchers

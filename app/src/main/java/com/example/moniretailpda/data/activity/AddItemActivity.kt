@@ -5,6 +5,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -91,7 +92,21 @@ class  AddItemActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
             }
         }
+
+        viewModel.errorMsg.observe(this){msg ->
+            if(msg != null){
+                AlertDialog.Builder(this)
+                    .setTitle("Warning")
+                    .setMessage(msg)
+                    .setPositiveButton("OK", null)
+                    .show()
+            } else {
+                // 如果没有特定错误信息但 success 为 false，提示通用错误
+                Toast.makeText(this, "Failed to add product", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
+
 
     private fun clear(){
         etBarcode.text.clear()

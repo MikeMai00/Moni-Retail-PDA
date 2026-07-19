@@ -1,7 +1,9 @@
 package com.example.moniretailpda.data.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -56,7 +58,6 @@ class ItemEditActivity : AppCompatActivity() {
         sessionManager = SessionManager(this)
 
         btnEnter.setOnClickListener {
-            val itemName = etDescription.text.toString().trim()
             val barcode = etBarcode.text.toString().trim()
             if (barcode.isEmpty()) {
                 Toast.makeText(this, "Barcode is required", Toast.LENGTH_SHORT).show()
@@ -82,6 +83,12 @@ class ItemEditActivity : AppCompatActivity() {
             }
 
             viewModel.updateProduct(barcode,itemName,price,cost,stock)
+            //收键盘
+            val currentView = this.currentFocus
+            if (currentView != null) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(currentView.windowToken, 0)
+            }
         }
 
         btnDetele.setOnClickListener{

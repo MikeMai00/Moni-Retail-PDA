@@ -1,6 +1,5 @@
 package com.example.moniretailpda.data.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Insert
 import androidx.room.Dao
 import androidx.room.OnConflictStrategy
